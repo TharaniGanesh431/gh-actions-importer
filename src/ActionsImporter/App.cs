@@ -17,7 +17,6 @@ public class App
     public bool NoHostNetwork { get; set; }
 
     private readonly ImmutableDictionary<string, string> _environmentVariables;
-    private string ImageTag => IsPrerelease ? "pre" : "latest";
 
     private readonly string ActionsImporterContainerRegistry;
 
