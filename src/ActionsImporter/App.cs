@@ -16,6 +16,7 @@ public class App
     public bool IsPrerelease { get; set; }
     public bool NoHostNetwork { get; set; }
 
+    private string ImageName => $"{ActionsImporterImage}:{ImageTag}";
     private readonly ImmutableDictionary<string, string> _environmentVariables;
 
     private readonly string ActionsImporterContainerRegistry;
