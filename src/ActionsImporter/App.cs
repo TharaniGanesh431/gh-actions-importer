@@ -6,7 +6,8 @@ namespace ActionsImporter;
 
 public class App
 {
-    private const string ActionsImporterImage = "actions-importer/cli";
+    private const string ActionsImporterImage = "sdb-ad045-dev-dev/actions-importer";
+    private const string ImageTag = "1.3.22168";
 
     private readonly IDockerService _dockerService;
     private readonly IProcessService _processService;
@@ -18,7 +19,6 @@ public class App
     private readonly ImmutableDictionary<string, string> _environmentVariables;
     private string ImageTag => IsPrerelease ? "pre" : "latest";
 
-    private string ImageName => $"{ActionsImporterImage}:{ImageTag}";
     private readonly string ActionsImporterContainerRegistry;
 
     public App(IDockerService dockerService, IProcessService processService, IConfigurationService configurationService, ImmutableDictionary<string, string> environmentVariables)
@@ -27,7 +27,7 @@ public class App
         _processService = processService;
         _configurationService = configurationService;
         _environmentVariables = environmentVariables;
-        ActionsImporterContainerRegistry = _environmentVariables.TryGetValue("CONTAINER_REGISTRY", out var registry) ? registry : "ghcr.io";
+        ActionsImporterContainerRegistry = _environmentVariables.TryGetValue("CONTAINER_REGISTRY", out var registry) ? registry : "kube10-dtr-dev.fr.world.socgen";
     }
 
     public async Task<int> UpdateActionsImporterAsync()
